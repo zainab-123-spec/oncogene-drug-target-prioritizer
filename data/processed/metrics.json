@@ -1,0 +1,387 @@
+{
+  "generated_at": "2026-10-26T09:15:33.868575+00:00",
+  "versions": {
+    "python": "3.12.3",
+    "pandas": "3.1.0",
+    "numpy": "2.5.4",
+    "scikit-learn": "1.9.1",
+    "rdkit": "2026.09.1",
+    "matplotlib": "3.11.2"
+  },
+  "n_compounds": 6688,
+  "n_features": 541,
+  "active_threshold_pic50": 6.0,
+  "fp_size": 512,
+  "fast": false,
+  "splits": {
+    "scaffold": {
+      "n_train": 5360,
+      "n_test": 1328,
+      "shared_scaffolds": 0,
+      "test_positive_rate": 0.7387048192771084,
+      "train_positive_rate": 0.7182835820895522
+    },
+    "random": {
+      "n_train": 5350,
+      "n_test": 1338,
+      "shared_scaffolds": 525,
+      "test_positive_rate": 0.7399103139013453,
+      "train_positive_rate": 0.7179439252336448
+    }
+  },
+  "models": [
+    {
+      "rmse": 1.2417301185131668,
+      "pearson_r": null,
+      "spearman_rho": null,
+      "roc_auc": null,
+      "pr_auc": null,
+      "name": "MeanBaseline",
+      "task": "regression",
+      "split": "scaffold"
+    },
+    {
+      "name": "PrevalenceBaseline",
+      "task": "classification",
+      "split": "scaffold",
+      "rmse": null,
+      "pearson_r": null,
+      "spearman_rho": null,
+      "roc_auc": 0.5,
+      "pr_auc": 0.7387048192771084
+    },
+    {
+      "rmse": 1.0785788973027493,
+      "pearson_r": 0.536259135896871,
+      "spearman_rho": 0.540666625893502,
+      "roc_auc": 0.7798150449315084,
+      "pr_auc": 0.8959089498754592,
+      "name": "Ridge",
+      "task": "regression",
+      "split": "scaffold"
+    },
+    {
+      "rmse": 0.8995758854544375,
+      "pearson_r": 0.7053607326668035,
+      "spearman_rho": 0.7079634059563523,
+      "roc_auc": 0.8586177722549769,
+      "pr_auc": 0.9331469303487162,
+      "name": "RandomForest",
+      "task": "regression",
+      "split": "scaffold"
+    },
+    {
+      "rmse": 0.8999486693287837,
+      "pearson_r": 0.6901271063483903,
+      "spearman_rho": 0.6864315411139581,
+      "roc_auc": 0.8459917099237091,
+      "pr_auc": 0.9287745535366924,
+      "name": "HistGradientBoosting",
+      "task": "regression",
+      "split": "scaffold"
+    },
+    {
+      "rmse": null,
+      "pearson_r": null,
+      "spearman_rho": null,
+      "roc_auc": 0.793789493165534,
+      "pr_auc": 0.9018864730981544,
+      "name": "RidgeClassifier",
+      "task": "classification",
+      "split": "scaffold"
+    },
+    {
+      "rmse": null,
+      "pearson_r": null,
+      "spearman_rho": null,
+      "roc_auc": 0.8719870625457173,
+      "pr_auc": 0.9475128087360174,
+      "name": "RandomForest",
+      "task": "classification",
+      "split": "scaffold"
+    },
+    {
+      "rmse": null,
+      "pearson_r": null,
+      "spearman_rho": null,
+      "roc_auc": 0.8635089760198821,
+      "pr_auc": 0.9421773134142319,
+      "name": "HistGradientBoosting",
+      "task": "classification",
+      "split": "scaffold"
+    },
+    {
+      "rmse": 1.2368541259081107,
+      "pearson_r": null,
+      "spearman_rho": null,
+      "roc_auc": null,
+      "pr_auc": null,
+      "name": "MeanBaseline",
+      "task": "regression",
+      "split": "random"
+    },
+    {
+      "name": "PrevalenceBaseline",
+      "task": "classification",
+      "split": "random",
+      "rmse": null,
+      "pearson_r": null,
+      "spearman_rho": null,
+      "roc_auc": 0.5,
+      "pr_auc": 0.7399103139013453
+    },
+    {
+      "rmse": 0.9716492737939071,
+      "pearson_r": 0.6279747846764876,
+      "spearman_rho": 0.6335968738474167,
+      "roc_auc": 0.8268605596191803,
+      "pr_auc": 0.9223586606781764,
+      "name": "Ridge",
+      "task": "regression",
+      "split": "random"
+    },
+    {
+      "rmse": 0.7641871642746327,
+      "pearson_r": 0.7986315969195732,
+      "spearman_rho": 0.8036293877150579,
+      "roc_auc": 0.9050505050505051,
+      "pr_auc": 0.9633188705155235,
+      "name": "RandomForest",
+      "task": "regression",
+      "split": "random"
+    },
+    {
+      "rmse": 0.7644383022603893,
+      "pearson_r": 0.786011008147209,
+      "spearman_rho": 0.7879727181091112,
+      "roc_auc": 0.8924822942064321,
+      "pr_auc": 0.9570385337396595,
+      "name": "HistGradientBoosting",
+      "task": "regression",
+      "split": "random"
+    },
+    {
+      "rmse": null,
+      "pearson_r": null,
+      "spearman_rho": null,
+      "roc_auc": 0.8250232207128758,
+      "pr_auc": 0.9189935724615247,
+      "name": "RidgeClassifier",
+      "task": "classification",
+      "split": "random"
+    },
+    {
+      "rmse": null,
+      "pearson_r": null,
+      "spearman_rho": null,
+      "roc_auc": 0.9021885521885521,
+      "pr_auc": 0.9572996746262439,
+      "name": "RandomForest",
+      "task": "classification",
+      "split": "random"
+    },
+    {
+      "rmse": null,
+      "pearson_r": null,
+      "spearman_rho": null,
+      "roc_auc": 0.8995646116335771,
+      "pr_auc": 0.956546576827612,
+      "name": "HistGradientBoosting",
+      "task": "classification",
+      "split": "random"
+    }
+  ],
+  "leakage": {
+    "HistGradientBoosting": {
+      "classification": {
+        "rmse_gap": null,
+        "pearson_r_gap": null,
+        "spearman_rho_gap": null,
+        "roc_auc_gap": 0.03605563561369507,
+        "pr_auc_gap": 0.014369263413380073
+      },
+      "regression": {
+        "rmse_gap": 0.13551036706839437,
+        "pearson_r_gap": 0.09588390179881878,
+        "spearman_rho_gap": 0.10154117699515308,
+        "roc_auc_gap": 0.04649058428272301,
+        "pr_auc_gap": 0.028263980202967165
+      }
+    },
+    "MeanBaseline": {
+      "regression": {
+        "rmse_gap": 0.004875992605056112,
+        "pearson_r_gap": null,
+        "spearman_rho_gap": null,
+        "roc_auc_gap": null,
+        "pr_auc_gap": null
+      }
+    },
+    "PrevalenceBaseline": {
+      "classification": {
+        "rmse_gap": null,
+        "pearson_r_gap": null,
+        "spearman_rho_gap": null,
+        "roc_auc_gap": 0.0,
+        "pr_auc_gap": 0.0012054946242369136
+      }
+    },
+    "RandomForest": {
+      "classification": {
+        "rmse_gap": null,
+        "pearson_r_gap": null,
+        "spearman_rho_gap": null,
+        "roc_auc_gap": 0.030201489642834756,
+        "pr_auc_gap": 0.009786865890226482
+      },
+      "regression": {
+        "rmse_gap": 0.13538872117980472,
+        "pearson_r_gap": 0.09327086425276965,
+        "spearman_rho_gap": 0.09566598175870555,
+        "roc_auc_gap": 0.046432732795528175,
+        "pr_auc_gap": 0.030171940166807243
+      }
+    },
+    "Ridge": {
+      "regression": {
+        "rmse_gap": 0.10692962350884216,
+        "pearson_r_gap": 0.09171564877961658,
+        "spearman_rho_gap": 0.09293024795391469,
+        "roc_auc_gap": 0.04704551468767182,
+        "pr_auc_gap": 0.026449710802717186
+      }
+    },
+    "RidgeClassifier": {
+      "classification": {
+        "rmse_gap": null,
+        "pearson_r_gap": null,
+        "spearman_rho_gap": null,
+        "roc_auc_gap": 0.031233727547341772,
+        "pr_auc_gap": 0.017107099363370293
+      }
+    }
+  },
+  "feature_importance": [
+    {
+      "feature": "Morgan fingerprint (sum of bits)",
+      "importance": 0.698878280428107
+    },
+    {
+      "feature": "mw",
+      "importance": 0.037606980628850026
+    },
+    {
+      "feature": "tpsa",
+      "importance": 0.0237718513817827
+    },
+    {
+      "feature": "crystal_structure_count",
+      "importance": 0.019213870375633463
+    },
+    {
+      "feature": "max_association_score",
+      "importance": 0.016437742419991047
+    },
+    {
+      "feature": "logp",
+      "importance": 0.015422444627934741
+    },
+    {
+      "feature": "rotatable_bonds",
+      "importance": 0.014716292961702238
+    },
+    {
+      "feature": "max_literature",
+      "importance": 0.013766379012287515
+    },
+    {
+      "feature": "max_known_drug_score",
+      "importance": 0.013666365233070884
+    },
+    {
+      "feature": "hba",
+      "importance": 0.01356707516837125
+    },
+    {
+      "feature": "max_somatic_mutation",
+      "importance": 0.0133888569073404
+    },
+    {
+      "feature": "best_crystal_resolution",
+      "importance": 0.012331248424967998
+    },
+    {
+      "feature": "drug_candidate_count",
+      "importance": 0.012277530352668795
+    },
+    {
+      "feature": "sequence_length",
+      "importance": 0.011344330092157746
+    },
+    {
+      "feature": "max_genetic_association",
+      "importance": 0.011128061017947537
+    },
+    {
+      "feature": "safety_liability_count",
+      "importance": 0.010671130655239199
+    },
+    {
+      "feature": "n_panel_diseases",
+      "importance": 0.009873961936543729
+    },
+    {
+      "feature": "aromatic_rings",
+      "importance": 0.009262376911536174
+    },
+    {
+      "feature": "hbd",
+      "importance": 0.007535320610227759
+    },
+    {
+      "feature": "domain_count",
+      "importance": 0.007145704923744438
+    },
+    {
+      "feature": "ligand_bound_crystal_count",
+      "importance": 0.006188516590619788
+    },
+    {
+      "feature": "lipinski_violations",
+      "importance": 0.0039401361309977685
+    },
+    {
+      "feature": "approved_drug_sm",
+      "importance": 0.0033248973444500955
+    },
+    {
+      "feature": "area_infectious",
+      "importance": 0.00322745316679768
+    },
+    {
+      "feature": "area_oncology",
+      "importance": 0.0031781929514839847
+    },
+    {
+      "feature": "area_metabolic",
+      "importance": 0.002278928243505973
+    },
+    {
+      "feature": "area_autoimmune",
+      "importance": 0.00224543964207574
+    },
+    {
+      "feature": "high_quality_pocket_sm",
+      "importance": 0.0018780132120135864
+    },
+    {
+      "feature": "area_neurodegenerative",
+      "importance": 0.0017326186479511214
+    },
+    {
+      "feature": "structure_with_ligand_sm",
+      "importance": 0.0
+    }
+  ],
+  "demo_model_note": "metrics.json is computed on held-out splits. data/models/demo_hgb.joblib is refit on all modeled rows afterwards for the Streamlit demo and is not the source of these metrics."
+}

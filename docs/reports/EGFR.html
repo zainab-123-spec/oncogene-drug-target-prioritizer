@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>EGFR target report</title>
+  <style>
+    body { font-family: Georgia, serif; margin: 2rem auto; max-width: 980px; color: #1f2933; }
+    table { border-collapse: collapse; width: 100%; font-size: 0.92rem; }
+    th, td { border-bottom: 1px solid #d9e2e2; text-align: left; padding: 0.35rem 0.45rem; vertical-align: top; }
+    img { max-width: 100%; height: auto; }
+    code { font-size: 0.78rem; }
+    .tag { color: #0f6e6e; letter-spacing: 0.04em; text-transform: uppercase; font-size: 0.78rem; }
+  </style>
+</head>
+<body>
+  <p class="tag">Oncology</p>
+  <h1>EGFR</h1>
+  <p>Association evidence is the Open Targets overall score and datatype scores for this gene.
+  Potency rows are deduplicated ChEMBL binding IC50 measurements converted to pIC50.
+  This is a research summary, not a treatment recommendation.</p>
+  <h2>Target card</h2>
+  <table><tr><th>UniProt</th><td>P00533</td></tr><tr><th>Protein</th><td>Epidermal growth factor receptor</td></tr><tr><th>Sequence length</th><td>1210</td></tr><tr><th>Domains</th><td>1</td></tr><tr><th>Safety liabilities</th><td>21</td></tr><tr><th>Clinical candidates (Open Targets count)</th><td>82</td></tr><tr><th>Approved small-molecule drug</th><td>1</td></tr><tr><th>High-quality pocket</th><td>1</td></tr><tr><th>Crystal structures</th><td>367</td></tr><tr><th>Best crystal resolution (Å)</th><td>1.07</td></tr><tr><th>Best crystal PDB id</th><td>8A27</td></tr><tr><th>Ligand-bound crystals inspected</th><td>6</td></tr></table>
+  <h2>Disease panel</h2>
+  <table>
+    <tr><th>Disease</th><th>Area</th><th>Association</th><th>Genetic</th><th>Somatic</th><th>Known drug / clinical</th><th>Source id</th></tr>
+    <tr><td>Alzheimer disease</td><td>Neurodegenerative</td><td>0.453</td><td>0.696</td><td>—</td><td>—</td><td>nan</td></tr><tr><td>Parkinson disease</td><td>Neurodegenerative</td><td>0.091</td><td>—</td><td>—</td><td>—</td><td>nan</td></tr><tr><td>epilepsy</td><td>Neurodegenerative</td><td>0.337</td><td>0.512</td><td>—</td><td>—</td><td>nan</td></tr><tr><td>type 2 diabetes mellitus</td><td>Metabolic</td><td>0.085</td><td>—</td><td>—</td><td>—</td><td>nan</td></tr><tr><td>familial hypercholesterolemia</td><td>Metabolic</td><td>0.080</td><td>—</td><td>—</td><td>—</td><td>nan</td></tr><tr><td>rheumatoid arthritis</td><td>Autoimmune</td><td>0.114</td><td>—</td><td>—</td><td>—</td><td>nan</td></tr><tr><td>inflammatory bowel disease</td><td>Autoimmune</td><td>0.655</td><td>0.786</td><td>0.304</td><td>—</td><td>nan</td></tr><tr><td>HIV infectious disease</td><td>Infectious</td><td>0.020</td><td>—</td><td>—</td><td>—</td><td>nan</td></tr><tr><td>malaria</td><td>Infectious</td><td>0.020</td><td>—</td><td>—</td><td>—</td><td>nan</td></tr><tr><td>tuberculosis</td><td>Infectious</td><td>0.109</td><td>—</td><td>—</td><td>—</td><td>nan</td></tr><tr><td>COVID-19</td><td>Infectious</td><td>0.105</td><td>—</td><td>—</td><td>0.122</td><td>clinical</td></tr><tr><td>non-small cell lung carcinoma</td><td>Oncology</td><td>0.888</td><td>0.934</td><td>0.931</td><td>0.996</td><td>clinical</td></tr><tr><td>breast carcinoma</td><td>Oncology</td><td>0.661</td><td>0.195</td><td>0.560</td><td>0.850</td><td>clinical</td></tr><tr><td>colorectal cancer</td><td>Oncology</td><td>0.773</td><td>0.000</td><td>0.624</td><td>0.978</td><td>clinical</td></tr><tr><td>glioblastoma</td><td>Oncology</td><td>0.685</td><td>0.379</td><td>0.800</td><td>0.631</td><td>clinical</td></tr><tr><td>melanoma</td><td>Oncology</td><td>0.524</td><td>—</td><td>0.713</td><td>0.481</td><td>clinical</td></tr>
+  </table>
+  <h2>Highest measured pIC50 values</h2>
+  <table>
+    <tr><th>ChEMBL id</th><th>pIC50</th><th>IC50 (nM)</th><th>MW</th><th>LogP</th><th>Ro5 violations</th><th>SMILES</th></tr>
+    <tr><td>CHEMBL1173655</td><td>10.215</td><td>0.1</td><td>485.9</td><td>4.390</td><td>0</td><td><code>CN(C)C/C=C/C(=O)Nc1cc2c(Nc3ccc(F)c(Cl)c3)ncnc2cc1O[C@H]1CCOC1</code></td></tr><tr><td>CHEMBL6170958</td><td>9.921</td><td>0.1</td><td>340.8</td><td>4.545</td><td>0</td><td><code>CCOc1ccc(/C=C2/C(=O)N(c3ccc(Cl)cc3)N=C2C)cc1</code></td></tr><tr><td>CHEMBL6188493</td><td>9.793</td><td>0.2</td><td>414.5</td><td>5.194</td><td>1</td><td><code>COc1cc2nc(C)nc(Oc3ccc(/C=N/Nc4ccccc4)cc3)c2cc1OC</code></td></tr><tr><td>CHEMBL334697</td><td>9.770</td><td>0.2</td><td>384.2</td><td>3.680</td><td>0</td><td><code>C=CC(=O)N(C)c1cc2c(Nc3cccc(Br)c3)ncnc2cn1</code></td></tr><tr><td>CHEMBL6192974</td><td>9.714</td><td>0.2</td><td>401.9</td><td>3.164</td><td>0</td><td><code>COc1cc2nc(C)nc(NNCC(=O)Nc3ccc(Cl)cc3)c2cc1OC</code></td></tr><tr><td>CHEMBL6193031</td><td>9.712</td><td>0.2</td><td>480.6</td><td>2.863</td><td>0</td><td><code>COc1cc2nc(C)nc(N/N=C/c3cc(CN4CCN(C)CC4)c(O)c(OC)c3)c2cc1OC</code></td></tr><tr><td>CHEMBL6152892</td><td>9.678</td><td>0.2</td><td>408.9</td><td>4.385</td><td>0</td><td><code>CCOc1ccc(C2C(C#N)=C(N)OC3C2C(C)=NN3c2ccc(Cl)cc2)cc1</code></td></tr><tr><td>CHEMBL4560430</td><td>9.658</td><td>0.2</td><td>646.3</td><td>1.553</td><td>1</td><td><code>Cn1cnc([N+](=O)[O-])c1C[N+](C)(C)C/C=C/C(=O)Nc1ccc2ncnc(Nc3cccc(Br)c3)c2c1.[Br-]</code></td></tr><tr><td>CHEMBL4527121</td><td>9.658</td><td>0.2</td><td>642.4</td><td>2.819</td><td>1</td><td><code>C[N+](C)(C/C=C/C(=O)Nc1ccc2ncnc(Nc3cccc(Br)c3)c2c1)Cc1ccccc1[N+](=O)[O-].[Br-]</code></td></tr><tr><td>CHEMBL4473277</td><td>9.658</td><td>0.2</td><td>646.3</td><td>1.553</td><td>1</td><td><code>Cn1cc([N+](=O)[O-])nc1C[N+](C)(C)C/C=C/C(=O)Nc1ccc2ncnc(Nc3cccc(Br)c3)c2c1.[Br-]</code></td></tr><tr><td>CHEMBL4439982</td><td>9.658</td><td>0.2</td><td>642.4</td><td>2.819</td><td>1</td><td><code>C[N+](C)(C/C=C/C(=O)Nc1ccc2ncnc(Nc3cccc(Br)c3)c2c1)Cc1ccc([N+](=O)[O-])cc1.[Br-]</code></td></tr><tr><td>CHEMBL4516232</td><td>9.658</td><td>0.2</td><td>646.3</td><td>1.553</td><td>1</td><td><code>Cn1ncc([N+](=O)[O-])c1C[N+](C)(C)C/C=C/C(=O)Nc1ccc2ncnc(Nc3cccc(Br)c3)c2c1.[Br-]</code></td></tr><tr><td>CHEMBL4540138</td><td>9.658</td><td>0.2</td><td>645.4</td><td>2.158</td><td>1</td><td><code>Cn1c(C[N+](C)(C)C/C=C/C(=O)Nc2ccc3ncnc(Nc4cccc(Br)c4)c3c2)ccc1[N+](=O)[O-].[Br-]</code></td></tr><tr><td>CHEMBL6190750</td><td>9.585</td><td>0.3</td><td>322.4</td><td>3.401</td><td>0</td><td><code>COc1cc2nc(C)nc(N/N=C/c3ccccc3)c2cc1OC</code></td></tr><tr><td>CHEMBL6193697</td><td>9.504</td><td>0.3</td><td>496.0</td><td>4.368</td><td>0</td><td><code>CCOC(=O)C1=C(C)N/C(=N\c2nc(C)nc3cc(OC)c(OC)cc23)NC1c1ccc(Cl)cc1</code></td></tr>
+  </table>
+  <h2>Figures</h2>
+  <figure><img src="../figures/analyze_EGFR_associations.png" alt="analyze_EGFR_associations.png" /></figure>
+<figure><img src="../figures/analyze_EGFR_potency.png" alt="analyze_EGFR_potency.png" /></figure>
+</body>
+</html>

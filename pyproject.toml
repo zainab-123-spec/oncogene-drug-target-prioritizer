@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "oncogene-drug-target-prioritizer"
+version = "1.0.0"
+description = "Multi-disease drug target and small-molecule bioactivity prioritizer using Open Targets, ChEMBL, UniProt, and the PDB."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Zainab Javed" }]
+keywords = [
+    "bioinformatics",
+    "drug-discovery",
+    "chembl",
+    "open-targets",
+    "machine-learning",
+]
+dependencies = [
+    "requests>=2.31",
+    "pandas>=2.0",
+    "numpy>=1.24",
+    "scikit-learn>=1.3",
+    "scipy>=1.11",
+    "matplotlib>=3.7",
+    "rdkit>=2023.9.1",
+    "streamlit>=1.28",
+    "joblib>=1.3",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4", "ruff>=0.4"]
+
+[project.scripts]
+odtp = "odtp.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["odtp*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+src = ["odtp", "tests", "app.py"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["odtp"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["B011"]
+"odtp/reports.py" = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+filterwarnings = ["ignore::DeprecationWarning"]
