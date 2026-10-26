@@ -33,7 +33,41 @@ This is a research and learning project. It is not a medical device and it does 
 Figures below are written by `python -m odtp all` from the live APIs. The numbers in the benchmark section are copied from that run's `data/processed/metrics.json`. They are not hand-entered targets.
 
 <!-- BENCHMARK:START -->
-Benchmark tables are filled from `docs/reports/benchmarks.md` after `python -m odtp train`. Until that file exists, the repository does not claim a score.
+Live run on 26 October 2026. Python 3.12, scikit-learn 1.9.1, RDKit 2026.09.1. Full table: `docs/reports/benchmarks.md` and `data/processed/metrics.json`.
+
+ChEMBL reports **228,236** binding IC50 rows for these 29 proteins. The pipeline fetched **16,480** (three archive windows), kept **11,197** exact molar measurements, **9,722** parent-compound pairs, **9,090** small molecules (MW 150–700), and **6,688** rows after the 250-compound cap. GLP1R is the thin case: 238 reported binding IC50s, **23** small molecules in the model. PCSK9 contributed 106. Most kinases hit the cap.
+
+Held-out scaffold split: 5,360 train / 1,328 test, **0 shared scaffolds**, test active rate 0.739. Random split: 5,350 / 1,338, **525 shared scaffolds**, active rate 0.740.
+
+### Regression (predict pIC50)
+
+| Model | Split | RMSE | Pearson r | Spearman rho | ROC-AUC | PR-AUC |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| MeanBaseline | scaffold | 1.242 | — | — | — | — |
+| MeanBaseline | random | 1.237 | — | — | — | — |
+| Ridge | scaffold | 1.079 | 0.536 | 0.541 | 0.780 | 0.896 |
+| Ridge | random | 0.972 | 0.628 | 0.634 | 0.827 | 0.922 |
+| RandomForest | scaffold | 0.900 | 0.705 | 0.708 | 0.859 | 0.933 |
+| RandomForest | random | 0.764 | 0.799 | 0.804 | 0.905 | 0.963 |
+| HistGradientBoosting | scaffold | 0.900 | 0.690 | 0.686 | 0.846 | 0.929 |
+| HistGradientBoosting | random | 0.764 | 0.786 | 0.788 | 0.892 | 0.957 |
+
+### Classification (active if pIC50 ≥ 6)
+
+| Model | Split | ROC-AUC | PR-AUC |
+| --- | --- | ---: | ---: |
+| PrevalenceBaseline | scaffold | 0.500 | 0.739 |
+| PrevalenceBaseline | random | 0.500 | 0.740 |
+| RidgeClassifier | scaffold | 0.794 | 0.902 |
+| RidgeClassifier | random | 0.825 | 0.919 |
+| RandomForest | scaffold | 0.872 | 0.948 |
+| RandomForest | random | 0.902 | 0.957 |
+| HistGradientBoosting | scaffold | 0.864 | 0.942 |
+| HistGradientBoosting | random | 0.900 | 0.957 |
+
+Random forest and gradient boosting tie on scaffold-split RMSE (**0.900** versus a mean baseline of **1.242**). The random split is optimistic: RMSE gap about **0.14** and ROC-AUC gap about **0.05** for those two models. About three quarters of the test compounds are active, so PR-AUC starts at **0.739** for a model that only knows the base rate. The forest's scaffold-split PR-AUC is **0.948**.
+
+A few association scores from the same run, all with known-drug evidence taken from the Platform's `clinical` datatype when that was the id returned: PCSK9–familial hypercholesterolemia 0.893 (genetic 0.919, clinical 0.975); EGFR–NSCLC 0.888 (genetic 0.934, somatic 0.931, clinical 0.996); CCR5–HIV 0.795 (clinical 0.980); LRRK2–Parkinson disease 0.879 (genetic 0.927, no clinical/known-drug score returned); GLP1R–type 2 diabetes 0.769; BACE1–Alzheimer disease 0.422.
 <!-- BENCHMARK:END -->
 
 ![Association heatmap](docs/figures/association_heatmap.png)

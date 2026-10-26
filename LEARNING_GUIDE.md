@@ -106,7 +106,19 @@ This does not catch every leak. A scaffold split still lets similar scaffolds th
 
 Time-split (train on old papers, test on new papers) and analog-exclusion by a similarity threshold are the usual next checks. They are named here so you can talk about them. They are not silently claimed as results.
 
-## 9. How to read the metrics
+## 9. What the 26 October 2026 run actually measured
+
+These numbers are from `data/processed/metrics.json` and `qc_funnel.csv` after `python -m odtp all`. If you retrain, read the new file. Do not memorize them as constants.
+
+- 228,236 binding IC50 rows reported by ChEMBL for the 29 proteins. 16,480 fetched. 6,688 used in the model after QC, deduplication, the molecular-weight window, and the cap of 250 per gene.
+- GLP1R kept 23 small molecules. PCSK9 kept 106. That is the metabolic-target story in one pair of counts.
+- Scaffold split: 5,360 / 1,328, shared scaffolds 0, active rate 0.739.
+- Random split: shared scaffolds 525.
+- Scaffold-split RMSE: mean baseline 1.242, Ridge 1.079, random forest 0.900, gradient boosting 0.900.
+- The random-split forest RMSE was 0.764. Gap about 0.14 pIC50 units. That is the leakage the README is talking about.
+- Scaffold-split PR-AUC for the forest classifier was 0.948, against a prevalence baseline of 0.739. The baseline is high because most published IC50s are active.
+
+## 10. How to read the metrics
 
 **RMSE** is the typical size of the pIC50 error, in the same units as the label. An RMSE of 1.0 means you are often off by about tenfold in concentration, because one pIC50 unit is a factor of ten. Compare it with the mean baseline, which predicts the training average for every row. If your model does not beat that baseline on the scaffold split, it is not predicting potency.
 
@@ -118,7 +130,7 @@ Time-split (train on old papers, test on new papers) and analog-exclusion by a s
 
 Regressors get all five numbers, using predicted pIC50 as the score for the two ranking metrics. Classifiers get ROC-AUC and PR-AUC only. Their RMSE cells are empty on purpose.
 
-## 10. The model, without mythology
+## 11. The model, without mythology
 
 Ridge is a linear model with a penalty so 512 correlated fingerprint bits do not explode. It is the interpretable baseline that can still use the fingerprint. Random forest and histogram gradient boosting are nonlinear. Trees do not need standardized inputs. Ridge does. The scaler is fit on the training fold only. Medians for missing crystal resolutions are also fit on the training fold only. Fitting them on the full matrix would leak test information into the features.
 
@@ -126,7 +138,7 @@ The random forest's impurity importances are summed across fingerprint bits and 
 
 The Streamlit demo model is a second fit, on every modeled row, saved after the metrics file is written. If you quote a number in an interview, quote `metrics.json`, not a live click on gefitinib.
 
-## 11. Module by module
+## 12. Module by module
 
 **`odtp/config.py`.** The disease ids, gene symbols, UniProt accessions, Ensembl ids, feature-column order, and the sampling constants (page size, windows, cap, weight window, active threshold, fingerprint size). If you change the cap, the benchmark changes. Say so.
 
@@ -152,13 +164,13 @@ The Streamlit demo model is a second fit, on every modeled row, saved after the 
 
 **`odtp/cli.py` and `app.py`.** `python -m odtp build`, `train`, `analyze EGFR`, and `all`. The app reads the CSVs. It does not call the APIs on each click.
 
-## 12. How the tests stay honest
+## 13. How the tests stay honest
 
 CI has no ChEMBL credentials and should not need the network. Tests construct the JSON those APIs return and check the parsers. A fake session scripts status codes so retry and cache behavior are deterministic. A fake Open Targets / ChEMBL / structure trio runs `build_dataset` on a handful of molecules, including a censored row, an invalid SMILES, a micromolar value, a duplicate parent, and benzene (too small to stay in the model). The funnel counts are asserted.
 
 The scaffold tests build 20 scaffolds with 10 copies each. They assert the scaffold split shares zero scaffolds and the random split shares some. A fast evaluation (`fast=True`, fewer trees) checks that RMSE and correlations exist for regressors and that classifier RMSE is null. `fast=True` is for that test. The reported benchmark is the full command, which does not pass `--fast`.
 
-## 13. Limits you should say out loud
+## 14. Limits you should say out loud
 
 - Multi-lab IC50s are noisy. A median helps. It does not create a single protocol.
 - ChEMBL is enriched for compounds someone thought were worth publishing. The active rate is not the active rate of chemical space.
@@ -168,7 +180,7 @@ The scaffold tests build 20 scaffolds with 10 copies each. They assert the scaff
 - Predicted pIC50 is not a dose, not a selectivity claim, and not a clinical claim.
 - BACE1 is in the panel specifically so that "potent and genetically interesting" is not treated as "therefore a drug."
 
-## 14. Fifteen interview questions
+## 15. Fifteen interview questions
 
 These are written the way I would answer them in a Google Student Researcher or Software Engineering Intern interview. The numbers, when I quote a model, come from the latest `data/processed/metrics.json` in the repo, not from memory of a hoped-for score.
 
@@ -232,6 +244,6 @@ I show them the shared-scaffold count and the gap. The higher AUC is what you ge
 
 The label is a multi-lab binding IC50, sampled, capped, and restricted to drug-like weights. The model has no cell permeability, no selectivity panel, no metabolism, and no clinical outcome. Association is not causality. I would next add a time split, report per-target RMSE so EGFR cannot hide a weak PCSK9 model, and try a censored-data model so the `>` rows are used as bounds instead of discarded. I would not add a heavier network until the scaffold-split error clearly beats a fingerprint baseline by enough to matter to a chemist, which is on the order of a few tenths of a pIC50 unit, not a prettier ROC curve.
 
-## 15. A last note on tone
+## 16. A last note on tone
 
 If an interviewer asks for the AUC and I do not remember it, the correct move is to open `metrics.json` or the README table and read it. Inventing a metric in the room is worse than saying "the scaffold-split RMSE is the number I stand behind, and I will read it from the artifact." The code was written so that artifact is produced by the training command and rendered by `odtp/reports.py`.
